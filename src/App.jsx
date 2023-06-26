@@ -7,14 +7,15 @@ function App() {
   return (
     <>
       <div className="titleBar">
-        <h1>Hearts Scoresheet</h1>
         <img src={heartslogo} />
+        <h1>Hearts Scoresheet</h1>
       </div>
       <div className="button-panel">
         <button>New Game</button>
-        <button>Rules</button>
+        <a href="https://bicyclecards.com/how-to-play/hearts/" target="_blank">
+          <button>Rules</button>
+        </a>
       </div>
-      <h2>Hi</h2>
     </>
   );
 }
