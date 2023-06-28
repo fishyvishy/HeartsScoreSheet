@@ -57,3 +57,29 @@
   margin: 5px;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 1em;
+  margin:0.5em;
+  border: solid 2px #860000; 
+  background-color: #ff5858;
+  border-radius: 10px;
+  font-size: 0.75rem;
+}
+
+form button {
+  margin:0.5em;
+}
+
+.score-card {
+  display: flex;
+}
+
+.score-card h1 {
+  margin: 1rem;
+}
+
