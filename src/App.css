@@ -133,3 +133,33 @@ form button {
 .game-button-grid button:not(:last-child) {
   margin-right: 10px;
 }
+
+
+.add-round-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25vw; 
+  min-width: 300px;
+  height: 50vh; 
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px var(--main-color) solid;
+  border-radius: 20px;
+}
+
+.add-round-modal h1 {
+  margin-top: 0;
+  color: "white";
+}
+
+.add-round-modal-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
