@@ -10,6 +10,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --main-color: #860000
 }
 
 /* a {
@@ -52,8 +54,8 @@ button:focus-visible {
 }
 
 ::placeholder { 
-  color: red;
-  opacity: 1; 
+  color: rgb(251, 251, 251);
+  opacity: 0.5; 
 }
 
 

@@ -4,7 +4,6 @@ import heartslogo from "./assets/hearts-logo2.svg";
 import "./App.css";
 
 function App() {
-  // 0: welcome, 1: setup, 2: started, 3: over
   const [gameState, setGameState] = useState("welcome");
   const [players, setPlayers] = useState({
     P1: "",
@@ -27,7 +26,7 @@ function App() {
     setGameState("started");
   }
 
-  // Conditionally Render body by gameState
+  // Conditionally render body by gameState
   let body;
   if (gameState === "welcome") {
     body = (
@@ -45,6 +44,7 @@ function App() {
       return (
         <input
           placeholder={`Player ${num}`}
+          key={num}
           name={pKey}
           value={players[pKey]}
           onChange={handleChange}
@@ -54,42 +54,8 @@ function App() {
     body = (
       <div>
         <form onSubmit={onSubmit}>
-          <div>
-            {inputs[0]}
-            {inputs[1]}
-          </div>
-          <div>
-            {inputs[2]}
-            {inputs[3]}
-          </div>
-          {/* <div>
-            <input
-              placeholder="Player 1"
-              name="P1"
-              value={players.P1}
-              onChange={handleChange}
-            />
-            <input
-              placeholder="Player 2"
-              name="P2"
-              value={players.P2}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <input
-              placeholder="Player 3"
-              name="P3"
-              value={players.P3}
-              onChange={handleChange}
-            />
-            <input
-              placeholder="Player 4"
-              name="P4"
-              value={players.P4}
-              onChange={handleChange}
-            />
-          </div> */}
+          <div>{[inputs[0], inputs[1]]}</div>
+          <div>{[inputs[2], inputs[3]]}</div>
           <button>Start Game</button>
         </form>
       </div>

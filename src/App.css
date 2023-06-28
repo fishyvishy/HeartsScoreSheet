@@ -32,7 +32,7 @@
 .titleBar > h1 {
   font-weight: 700 bold;
   font-size: 2.5em;
-  color: #860000;
+  color: var(--main-color);
   margin-top: 5px;
   margin-bottom: 1em;
 }
@@ -63,23 +63,73 @@ form {
 }
 
 input {
-  padding: 1em;
+  padding: 0.75em;
   margin:0.5em;
   border: solid 2px #860000; 
-  background-color: #ff5858;
+  background-color: #fb5858;
+  color: white;
   border-radius: 10px;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
+  font: inherit;
 }
 
 form button {
   margin:0.5em;
 }
 
+.score-card-container {
+  width: 80vw;
+  height: 80vh;
+}
+
 .score-card {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: 65vh;
+  border: 2px solid #f4aeae;
+  border-radius: 20px;
+  color: #860000;
+  text-align: center;
 }
 
 .score-card h1 {
   margin: 1rem;
+  margin-bottom: 0;
 }
 
+.player-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.player-card p {
+  margin: 0;
+  font-size: large;
+}
+
+.total {
+  margin-top: auto;
+}
+
+.score-card-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.score-card-info .roundNum {
+  color:var(--main-color);
+}
+
+.score-card-info .changeMsg {
+  color: white;
+  justify-self: center;
+}
+
+.game-button-grid {
+  justify-self: right;
+}
+.game-button-grid button:not(:last-child) {
+  margin-right: 10px;
+}
