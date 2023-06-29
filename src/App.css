@@ -7,6 +7,8 @@
   height: 100vh;
 }
 
+
+/* Welcome Page Styling */
 .titleBar {
   display: flex;
   flex-direction: column;
@@ -48,6 +50,8 @@
   }
 }
 
+
+/* Setup Page Styling */
 .button-panel {
   display: flex;
   place-content: center;
@@ -77,6 +81,8 @@ form button {
   margin:0.5em;
 }
 
+
+/* Score Card Styling */
 .score-card-container {
   width: 80vw;
   height: 80vh;
@@ -86,7 +92,7 @@ form button {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   height: 65vh;
-  border: 2px solid #f4aeae;
+  border: 2px solid var(--main-color);
   border-radius: 20px;
   color: #860000;
   text-align: center;
@@ -101,6 +107,10 @@ form button {
   display: flex;
   flex-direction: column;
 }
+
+/* .score-card > div:not(:last-child) {
+  border-right: 1px solid var(--main-color);
+} */
 
 .player-card p {
   margin: 0;
@@ -135,26 +145,62 @@ form button {
 }
 
 
-.add-round-modal {
-  position: fixed;
+/* Add Round Modal Styling */
+.modal-container {
+  position:fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 25vw; 
   min-width: 300px;
+  min-height: 400px;
   height: 50vh; 
+}
+.add-round-modal {
+  height: 100%;
+  width:100%;
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  color: rgb(241, 186, 186);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px var(--main-color) solid;
+  /* border: 2px var(--main-color) solid; */
   border-radius: 20px;
+  /* animation: fade-in 0.35s; */
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.add-round-modal.modal-shake {
+  animation: shake 0.5s ease-out;
+  animation-iteration-count: 2;
+  /* transform-origin: center; */
 }
 
 .add-round-modal h1 {
   margin-top: 0;
-  color: "white";
 }
 
 .add-round-modal-form {
@@ -162,4 +208,12 @@ form button {
   flex-direction: column;
   align-items: center;
 }
+
+.modal-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
 

@@ -60,7 +60,10 @@ export default function AddRoundModal(props) {
   return (
     <>
       <div className="modal-container">
-        <div className={`add-round-modal ${shake ? "modal-shake" : ""}`}>
+        <div
+          className={`add-round-modal ${shake ? "modal-shake" : ""}`}
+          onAnimationEnd={() => setShake(false)}
+        >
           <h1>Enter Scores</h1>
           <form className="add-round-modal-form">
             {formInputs}
