@@ -32,28 +32,40 @@ export default function AddRoundModal(props) {
     });
   }
 
-  function submitPoints(event) {
-    event.preventDefault();
-    const inRange = playerPoints.every((num) => num === 26 || num === 0);
+  function validate(points) {
     const sum = playerPoints.reduce(
       (accumulator, runner) => (runner += accumulator),
       0
     );
     if (sum === 26) {
-      const qSpadePlayed = playerPoints.some((num) => num >= 13);
+      const qSpadePlayed = points.some((num) => num >= 13);
       if (!qSpadePlayed) {
-        console.log("queen of spades must be played");
-        setShake(true);
+        return "Some Player must have at least 13 points";
+      }
+      return "";
+    } else {
+      return "26 points must be allocated";
+    }
+  }
+
+  function submitPoints(event) {
+    event.preventDefault();
+
+    const error = validate(playerPoints);
+    if (error !== "") {
+      console.log(error);
+      setShake(true);
+    } else {
+      const moonShot = playerPoints.some((num) => num === 26);
+      if (moonShot) {
+        const moonPoints = playerPoints.map((num) => (num === 26 ? 0 : 26));
+        const shooter = names[playerPoints.indexOf(26)];
+        console.log(`${shooter} shot the moon!!`);
+        scoreUpdater(moonPoints);
       } else {
         scoreUpdater(playerPoints);
-        toggle();
       }
-    } else {
-      if (inRange && sum === 78) {
-        console.log("someone shot the moon");
-      } else {
-        setShake(true);
-      }
+      toggle();
     }
   }
 

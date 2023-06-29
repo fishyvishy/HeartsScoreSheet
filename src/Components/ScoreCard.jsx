@@ -4,6 +4,7 @@ import AddRoundModal from "./AddRoundModal";
 
 export default function ScoreCard(props) {
   const [showModal, setShowModal] = useState(false);
+
   function toggleModal() {
     setShowModal((prevState) => !prevState);
   }

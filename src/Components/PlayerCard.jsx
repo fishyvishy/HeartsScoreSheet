@@ -16,7 +16,7 @@ export default function PlayerCard(props) {
     <div className="player-card">
       <h1>{props.name}</h1>
       {tally}
-      <h2 className="total" style={{ color: `hsl(0, 0%, ${100 - sum}%)` }}>
+      <h2 className="total" style={{ color: `hsl(185, 50%, ${100 - sum}%)` }}>
         {sum}
       </h2>
     </div>
