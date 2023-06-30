@@ -1,5 +1,5 @@
 export default function PlayerCard(props) {
-  const points = props.points;
+  const { points } = props;
 
   // awkward, but resolves key warning
   let range = [];

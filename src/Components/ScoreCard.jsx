@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PlayerCard from "./PlayerCard";
 import AddRoundModal from "./AddRoundModal";
+import ScoreCardInfo from "./ScoreCardInfo";
 
 export default function ScoreCard(props) {
   const [showModal, setShowModal] = useState(false);
@@ -15,6 +16,15 @@ export default function ScoreCard(props) {
     scoreBuilder[names[i]] = [];
   }
   const [scores, setScores] = useState(scoreBuilder);
+  let sums = [];
+  for (var name in scores) {
+    let sum = scores[name].reduce(
+      (accumulator, running) => (running += accumulator),
+      0
+    );
+    sums.push(sum);
+  }
+  const gameOver = sums.some((num) => num >= 100);
 
   function updateScores(roundScores) {
     setScores((prevScores) => {
@@ -37,26 +47,25 @@ export default function ScoreCard(props) {
     });
   }
 
+  function getWinners() {
+    let winners = [0];
+    for (let i = 1; i < 4; i++) {
+      if (sums[i] < sums[winners[0]]) {
+        winners = [i];
+      } else if (sums[i] === sums[winners[0]]) {
+        winners.push(i);
+      }
+    }
+    console.log(winners);
+    let namedWinners = winners.map((i) => names[i]);
+    return namedWinners.toString();
+  }
+
   const playerCards = names.map((name) => (
     <PlayerCard name={name} points={scores[name]} key={name} />
   ));
 
   let round = scores[names[0]].length;
-  let changeMsg;
-  switch (round % 4) {
-    case 0:
-      changeMsg = "Change Left";
-      break;
-    case 1:
-      changeMsg = "Change Right";
-      break;
-    case 2:
-      changeMsg = "Change Across";
-      break;
-    case 3:
-      changeMsg = "No Change";
-      break;
-  }
 
   return (
     <div className="score-card-container">
@@ -68,14 +77,15 @@ export default function ScoreCard(props) {
         />
       )}
       <div className="score-card">{playerCards}</div>
-      <div className="score-card-info">
-        <h2 className="roundNum">Round {round + 1}</h2>
-        <h2 className="changeMsg">{changeMsg}</h2>
-        <div className="game-button-grid">
-          <button onClick={toggleModal}>Add</button>
-          {round > 0 && <button onClick={deleteRound}>Delete</button>}
-        </div>
-      </div>
+      {!gameOver ? (
+        <ScoreCardInfo
+          round={round}
+          toggleModal={toggleModal}
+          deleteRound={deleteRound}
+        />
+      ) : (
+        <h3>{getWinners()}</h3>
+      )}
     </div>
   );
 }
