@@ -4,6 +4,7 @@ export default function AddRoundModal(props) {
   const { names, toggle, scoreUpdater } = props;
   const [playerPoints, setPlayerPoints] = useState([0, 0, 0, 0]);
   const [shake, setShake] = useState(false);
+  const [error, setError] = useState("");
 
   const formInputs = names.map((name) => {
     const index = names.indexOf(name);
@@ -53,7 +54,7 @@ export default function AddRoundModal(props) {
 
     const error = validate(playerPoints);
     if (error !== "") {
-      console.log(error);
+      setError(error);
       setShake(true);
     } else {
       const moonShot = playerPoints.some((num) => num === 26);
@@ -80,10 +81,13 @@ export default function AddRoundModal(props) {
           <form className="add-round-modal-form">
             {formInputs}
             <div>
-              <button onClick={submitPoints}>Add Points</button>
+              <button onClick={submitPoints}>Add Scores</button>
               <button onClick={toggle}>Cancel</button>
             </div>
           </form>
+          <div className="modal-error-msg">
+            {error !== "" ? `⚠ ${error}` : ""}
+          </div>
         </div>
       </div>
     </>
