@@ -2,6 +2,7 @@ import { useState } from "react";
 import PlayerCard from "./PlayerCard";
 import AddRoundModal from "./AddRoundModal";
 import ScoreCardInfo from "./ScoreCardInfo";
+import WinnerCard from "./WinnerCard";
 
 export default function ScoreCard(props) {
   const [showModal, setShowModal] = useState(false);
@@ -47,20 +48,6 @@ export default function ScoreCard(props) {
     });
   }
 
-  function getWinners() {
-    let winners = [0];
-    for (let i = 1; i < 4; i++) {
-      if (sums[i] < sums[winners[0]]) {
-        winners = [i];
-      } else if (sums[i] === sums[winners[0]]) {
-        winners.push(i);
-      }
-    }
-    console.log(winners);
-    let namedWinners = winners.map((i) => names[i]);
-    return namedWinners.toString();
-  }
-
   const playerCards = names.map((name) => (
     <PlayerCard name={name} points={scores[name]} key={name} />
   ));
@@ -84,7 +71,8 @@ export default function ScoreCard(props) {
           deleteRound={deleteRound}
         />
       ) : (
-        <h3>{getWinners()}</h3>
+        <WinnerCard pointTotals={sums} round={round} names={names} />
+        // <h3>{getWinners()}</h3>
       )}
     </div>
   );
