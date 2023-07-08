@@ -7,22 +7,13 @@ function App() {
   const [gameState, setGameState] = useState("welcome");
   const [players, setPlayers] = useState(["", "", "", ""]);
 
-  function handleChange2(event) {
+  function handleChange(event) {
     const { id, value } = event.target;
     setPlayers((prevNames) => {
       let updatedNames = [...prevNames];
       updatedNames[id] = value;
       return updatedNames;
     });
-  }
-
-  function handleChange(event) {
-    const { name, value } = event.target;
-
-    setPlayers((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
   }
 
   function onSubmit(event) {
@@ -48,7 +39,7 @@ function App() {
         key={num}
         id={num}
         value={players[num]}
-        onChange={handleChange2}
+        onChange={handleChange}
       />
     ));
     body = (
