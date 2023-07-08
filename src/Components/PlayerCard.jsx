@@ -1,5 +1,5 @@
 export default function PlayerCard(props) {
-  const { points } = props;
+  const { points, sum } = props;
 
   // awkward, but resolves key warning
   let range = [];
@@ -7,10 +7,6 @@ export default function PlayerCard(props) {
     range.push(i);
   }
   const tally = range.map((i) => <p key={i}>{points[i]}</p>);
-  const sum = points.reduce(
-    (accumulator, runningVal) => accumulator + runningVal,
-    0
-  );
 
   return (
     <div className="player-card">

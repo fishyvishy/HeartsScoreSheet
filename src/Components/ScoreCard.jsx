@@ -47,9 +47,17 @@ export default function ScoreCard(props) {
     });
   }
 
-  const playerCards = names.map((name) => (
-    <PlayerCard name={name} points={scores[name]} key={name} />
-  ));
+  const playerCards = names.map((name) => {
+    const index = names.indexOf(name);
+    return (
+      <PlayerCard
+        name={name}
+        points={scores[name]}
+        sum={sums[index]}
+        key={name}
+      />
+    );
+  });
 
   let round = scores[names[0]].length;
 
