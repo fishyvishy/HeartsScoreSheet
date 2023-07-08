@@ -5,7 +5,7 @@ import ScoreCardInfo from "./ScoreCardInfo";
 import WinnerCard from "./WinnerCard";
 
 export default function ScoreCard(props) {
-  const names = Object.values(props.names);
+  const names = props.names;
   let scoreBuilder = {};
   for (let i in names) {
     scoreBuilder[names[i]] = [];

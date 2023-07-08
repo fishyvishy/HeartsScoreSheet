@@ -5,12 +5,16 @@ import "./App.css";
 
 function App() {
   const [gameState, setGameState] = useState("welcome");
-  const [players, setPlayers] = useState({
-    P1: "",
-    P2: "",
-    P3: "",
-    P4: "",
-  });
+  const [players, setPlayers] = useState(["", "", "", ""]);
+
+  function handleChange2(event) {
+    const { id, value } = event.target;
+    setPlayers((prevNames) => {
+      let updatedNames = [...prevNames];
+      updatedNames[id] = value;
+      return updatedNames;
+    });
+  }
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -38,19 +42,15 @@ function App() {
       </div>
     );
   } else if (gameState === "setup") {
-    const numToKey = { 1: "P1", 2: "P2", 3: "P3", 4: "P4" };
-    const inputs = [1, 2, 3, 4].map((num) => {
-      const pKey = numToKey[num];
-      return (
-        <input
-          placeholder={`Player ${num}`}
-          key={num}
-          name={pKey}
-          value={players[pKey]}
-          onChange={handleChange}
-        />
-      );
-    });
+    const inputs = [0, 1, 2, 3].map((num) => (
+      <input
+        placeholder={`Player ${num + 1}`}
+        key={num}
+        id={num}
+        value={players[num]}
+        onChange={handleChange2}
+      />
+    ));
     body = (
       <div>
         <form className="setupForm" onSubmit={onSubmit}>
