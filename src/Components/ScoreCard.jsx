@@ -5,12 +5,6 @@ import ScoreCardInfo from "./ScoreCardInfo";
 import WinnerCard from "./WinnerCard";
 
 export default function ScoreCard(props) {
-  const [showModal, setShowModal] = useState(false);
-
-  function toggleModal() {
-    setShowModal((prevState) => !prevState);
-  }
-
   const names = Object.values(props.names);
   let scoreBuilder = {};
   for (let i in names) {
@@ -26,6 +20,11 @@ export default function ScoreCard(props) {
     sums.push(sum);
   }
   const gameOver = sums.some((num) => num >= 100);
+  const [showModal, setShowModal] = useState(false);
+
+  function toggleModal() {
+    setShowModal((prevState) => !prevState);
+  }
 
   function updateScores(roundScores) {
     setScores((prevScores) => {
@@ -72,7 +71,6 @@ export default function ScoreCard(props) {
         />
       ) : (
         <WinnerCard pointTotals={sums} round={round} names={names} />
-        // <h3>{getWinners()}</h3>
       )}
     </div>
   );

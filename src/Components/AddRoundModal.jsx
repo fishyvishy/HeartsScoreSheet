@@ -1,10 +1,12 @@
 import { useState } from "react";
+import wowSound from "../../src/assets/wow.mp3";
 
 export default function AddRoundModal(props) {
   const { names, toggle, scoreUpdater } = props;
   const [playerPoints, setPlayerPoints] = useState([0, 0, 0, 0]);
   const [shake, setShake] = useState(false);
   const [error, setError] = useState("");
+  const [playSound, setPlaysound] = useState(false);
 
   const formInputs = names.map((name) => {
     const index = names.indexOf(name);
@@ -52,21 +54,22 @@ export default function AddRoundModal(props) {
   function submitPoints(event) {
     event.preventDefault();
 
-    const error = validate(playerPoints);
-    if (error !== "") {
-      setError(error);
+    const err = validate(playerPoints);
+    if (err !== "") {
+      setError(err);
       setShake(true);
     } else {
       const moonShot = playerPoints.some((num) => num === 26);
       if (moonShot) {
         const moonPoints = playerPoints.map((num) => (num === 26 ? 0 : 26));
         const shooter = names[playerPoints.indexOf(26)];
+        setPlaysound(true);
         console.log(`${shooter} shot the moon!!`);
         scoreUpdater(moonPoints);
       } else {
         scoreUpdater(playerPoints);
+        toggle();
       }
-      toggle();
     }
   }
 
@@ -88,6 +91,16 @@ export default function AddRoundModal(props) {
           <div className="modal-error-msg">
             {error !== "" ? `⚠ ${error}` : ""}
           </div>
+          {playSound && (
+            <audio
+              autoPlay
+              src={wowSound}
+              onEnded={() => {
+                setPlaysound(false);
+                toggle();
+              }}
+            ></audio>
+          )}
         </div>
       </div>
     </>

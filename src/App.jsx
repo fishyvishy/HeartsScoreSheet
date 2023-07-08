@@ -53,7 +53,7 @@ function App() {
     });
     body = (
       <div>
-        <form onSubmit={onSubmit}>
+        <form className="setupForm" onSubmit={onSubmit}>
           <div>{[inputs[0], inputs[1]]}</div>
           <div>{[inputs[2], inputs[3]]}</div>
           <button>Start Game</button>

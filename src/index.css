@@ -3,7 +3,7 @@
 
   color-scheme: light dark;
   color: rgba(37, 34, 34, 0.87);
-  background-color: #f04242;
+  background-color: #f94545;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -11,7 +11,8 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  --main-color: #860000
+  --main-color: #860000;
+  --bg-color: #f04242;
 }
 
 /* a {
